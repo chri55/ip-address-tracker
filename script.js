@@ -3,7 +3,7 @@ function performSearch(e) {
   const currentSearchVal = formInput.value;
   const config = {
     "method": "get",
-    "url" : `http://ip-api.com/json/${currentSearchVal}`,
+    "url" : `http://ip-api.com/json/${currentSearchVal}/`,
   }
   axios(config)
   .then((res) => res.data)
