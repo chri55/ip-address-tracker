@@ -1,36 +1,34 @@
+import dotenv from 'dotenv';
+import axios from 'axios';
+dotenv.config();
+
 function performSearch(e) {
   if (e) e.preventDefault();
-  const currentSearchVal = formInput.value;
+  const currentSearchVal = formInput.value == "" ? '8.8.8.8' : formInput.value;
   const config = {
     "method": "get",
-    "url" : `http://ip-api.com/json/${currentSearchVal}/`,
+    "url" : `https://geo.ipify.org/api/v1?apiKey=${process.env.API_KEY}&ipAddress=${currentSearchVal}`,
   }
   axios(config)
   .then((res) => res.data)
   .then((data) => {
-    console.log(data);
-    return data;
-  })
-  .then((data) => {
-    if (data.status != "success") {
-      alert(`Query Failed: ${data.message}`);
+    if (data.code && data.code != 200) {
+      alert(`Error: ${data.messages}`);
       return;
     }
-    document.querySelector("#ip").innerHTML = data.query;
-    document.querySelector("#location").innerHTML = `${data.city}, ${data.region} ${data.zip}`;
-    document.querySelector("#timezone").innerHTML = moment.tz([2012, 0], `${data.timezone}`).format('Z z');
+    document.querySelector("#ip").innerHTML = data.ip;
+    document.querySelector("#location").innerHTML = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`;
+    document.querySelector("#timezone").innerHTML = `UTC ${data.location.timezone}`;
     document.querySelector("#isp").innerHTML = data.isp;
-    mymap.setView([data.lat, data.lon]);
-    currMarker.markerRef.setLatLng([data.lat, data.lon]);
+    mymap.setView([data.location.lat, data.location.lng]);
+    currMarker.markerRef.setLatLng([data.location.lat, data.location.lng]);
   });
 }
-
 const formInput = document.querySelector("#ip-search");
-const formSubmit = document.querySelector("#form-submit");
 const form = document.querySelector("#search-form");
 form.addEventListener("submit", performSearch);
 
-performSearch();
+//performSearch();
 
 var currMarker = {
   lat: 51.505,

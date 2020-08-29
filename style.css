@@ -153,6 +153,10 @@ h1 {
 
 
 @media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 1.2em;
+  }
+
   #ip-search {
     font-size: 0.7em;
   }
@@ -176,15 +180,21 @@ h1 {
   }
 
   .result-title {
-    font-size: 0.6em;
+    font-size: 0.5em;
   }
 
   .result-value {
-    font-size: 0.9em;
+    font-size: 0.75em;
   }
 
   #search-form {
     width: 100%;
+    min-height: 40px;
+    height: 40px;
+  }
+
+  #search-form * {
+    padding: 5px;
   }
 
   .result.left {
