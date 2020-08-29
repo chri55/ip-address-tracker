@@ -10,10 +10,9 @@ function performSearch(e) {
     "url" : `https://geo.ipify.org/api/v1?apiKey=${process.env.API_KEY}&ipAddress=${currentSearchVal}`,
   }
   axios(config)
-  .then((res) => res.data)
-  .then((data) => {
-    if (data.code && data.code != 200) {
-      alert(`Error: ${data.messages}`);
+  .then(({data}) => {
+    if (data.code || !data.ip) {
+      console.log(`Error: ${data.messages}`);
       return;
     }
     document.querySelector("#ip").innerHTML = data.ip;
