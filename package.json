@@ -1,0 +1,30 @@
+{
+  "name": "ip-address-tracker-master",
+  "version": "1.0.0",
+  "description": "![Design preview for the IP Address Tracker coding challenge](./design/desktop-preview.jpg)",
+  "main": "./src/index.js",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^2.0.0",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "webpack-cli": "^3.3.12",
+    "webpack": "^4.44.1",
+    "webpack-dev": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chri55/ip-address-tracker.git"
+  },
+  "author": "Chris Till",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chri55/ip-address-tracker/issues"
+  },
+  "homepage": "https://github.com/chri55/ip-address-tracker#readme"
+}
